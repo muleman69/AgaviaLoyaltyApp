@@ -1,0 +1,31 @@
+{
+  "common": {
+    "back": "Atrás",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "loading": "Cargando..."
+  },
+  "auth": {
+    "login": "Iniciar Sesión",
+    "signup": "Registrarse",
+    "email": "Correo Electrónico",
+    "password": "Contraseña",
+    "forgotPassword": "¿Olvidaste tu Contraseña?"
+  },
+  "dashboard": {
+    "stamps": "Sellos",
+    "points": "Puntos",
+    "rewards": "Recompensas Disponibles",
+    "tierProgress": "{{pointsNeeded}} puntos para {{nextTier}}"
+  },
+  "settings": {
+    "title": "Configuración",
+    "profile": "Perfil",
+    "notifications": "Notificaciones",
+    "language": "Idioma",
+    "tierHistory": "Historial de Nivel",
+    "recentRewards": "Recompensas Recientes",
+    "logout": "Cerrar Sesión"
+  }
+}

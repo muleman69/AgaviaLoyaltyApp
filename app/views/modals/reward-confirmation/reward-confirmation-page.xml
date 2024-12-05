@@ -1,0 +1,36 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" shownModally="onShownModally" class="bg-transparent">
+    <GridLayout class="bg-black bg-opacity-50" rows="*, auto, *">
+        <StackLayout row="1" class="bg-white rounded-lg m-4 p-6">
+            <Label text="Confirm Redemption" class="text-xl font-bold text-center mb-4" />
+            
+            <!-- Reward Details -->
+            <GridLayout rows="auto" columns="auto, *" class="mb-4">
+                <Image src="{{ reward.imageUrl }}" width="60" height="60" class="rounded-lg" />
+                <StackLayout col="1" class="ml-3">
+                    <Label text="{{ reward.name }}" class="font-bold" />
+                    <Label text="{{ reward.description }}" textWrap="true" class="text-sm text-gray-600" />
+                </StackLayout>
+            </GridLayout>
+
+            <!-- Requirements -->
+            <StackLayout class="bg-amber-50 p-3 rounded-lg mb-4">
+                <Label text="Requirements:" class="font-semibold mb-2" />
+                <Label text="{{ 'Points: ' + reward.requiredPoints }}" class="text-sm" />
+                <Label text="{{ 'Stamps: ' + reward.requiredStamps }}" class="text-sm" />
+            </StackLayout>
+
+            <!-- Confirmation Message -->
+            <Label text="Are you sure you want to redeem this reward?" 
+                   textWrap="true" 
+                   class="text-center text-gray-600 mb-4" />
+
+            <!-- Buttons -->
+            <Button text="Confirm Redemption" 
+                    tap="{{ onConfirm }}" 
+                    class="bg-amber-600 text-white p-4 rounded-lg font-bold mb-2" />
+            <Button text="Cancel" 
+                    tap="{{ onCancel }}" 
+                    class="bg-transparent text-amber-600 p-4" />
+        </StackLayout>
+    </GridLayout>
+</Page>

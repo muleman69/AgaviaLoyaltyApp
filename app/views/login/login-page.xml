@@ -1,0 +1,54 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-gray-100">
+    <ActionBar title="Agavia Rewards" class="bg-amber-600 text-white" />
+    
+    <ScrollView>
+        <StackLayout class="p-4 space-y-4">
+            <Image src="~/images/logo.png" class="h-32 w-32 mx-auto" />
+            
+            <Label text="Welcome to Agavia" class="text-2xl font-bold text-center text-amber-800" />
+            
+            <!-- User Type Selection -->
+            <SegmentedBar selectedIndex="{{ userType }}" class="mb-4">
+                <SegmentedBar.items>
+                    <SegmentedBarItem title="Customer" />
+                    <SegmentedBarItem title="Business Admin" />
+                </SegmentedBar.items>
+            </SegmentedBar>
+            
+            <!-- Login Form -->
+            <StackLayout class="space-y-4">
+                <TextField hint="Email" 
+                          text="{{ email }}" 
+                          keyboardType="email"
+                          class="p-4 bg-white rounded-lg border border-gray-300" />
+                
+                <TextField hint="Password" 
+                          text="{{ password }}" 
+                          secure="true"
+                          class="p-4 bg-white rounded-lg border border-gray-300" />
+                
+                <Button text="Login" 
+                        tap="{{ onLogin }}" 
+                        class="bg-amber-600 text-white p-4 rounded-lg font-bold" />
+                
+                <Button text="Sign Up" 
+                        tap="{{ onSignUp }}" 
+                        class="bg-transparent text-amber-600 p-4 rounded-lg font-bold" />
+                
+                <!-- Error Message -->
+                <Label text="{{ errorMessage }}" 
+                       class="text-red-500 text-center" 
+                       visibility="{{ errorMessage ? 'visible' : 'collapsed' }}" />
+                
+                <!-- Loading Indicator -->
+                <ActivityIndicator busy="{{ isLoading }}" 
+                                 class="text-amber-600" />
+            </StackLayout>
+            
+            <!-- Help Text -->
+            <Label text="{{ helpText }}" 
+                   textWrap="true"
+                   class="text-sm text-gray-600 text-center p-4" />
+        </StackLayout>
+    </ScrollView>
+</Page>

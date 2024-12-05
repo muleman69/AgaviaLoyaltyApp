@@ -1,0 +1,23 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" shownModally="onShownModally" class="bg-transparent">
+    <GridLayout class="bg-black bg-opacity-50">
+        <StackLayout class="bg-white rounded-lg m-4 p-6">
+            <!-- Success Animation -->
+            <Label text="🎉" class="text-6xl text-center animate-bounce" />
+            
+            <!-- Success Message -->
+            <Label text="{{ message }}" 
+                   textWrap="true" 
+                   class="text-xl font-bold text-center text-amber-600 my-4" />
+            
+            <!-- Details -->
+            <Label text="{{ details }}" 
+                   textWrap="true" 
+                   class="text-center text-gray-600 mb-4" />
+            
+            <!-- Close Button -->
+            <Button text="Great!" 
+                    tap="{{ onClose }}" 
+                    class="bg-amber-600 text-white p-4 rounded-lg font-bold" />
+        </StackLayout>
+    </GridLayout>
+</Page>

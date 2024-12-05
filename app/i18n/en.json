@@ -1,0 +1,31 @@
+{
+  "common": {
+    "back": "Back",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "loading": "Loading..."
+  },
+  "auth": {
+    "login": "Login",
+    "signup": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot Password?"
+  },
+  "dashboard": {
+    "stamps": "Stamps",
+    "points": "Points",
+    "rewards": "Available Rewards",
+    "tierProgress": "{{pointsNeeded}} points to {{nextTier}}"
+  },
+  "settings": {
+    "title": "Settings",
+    "profile": "Profile",
+    "notifications": "Notifications",
+    "language": "Language",
+    "tierHistory": "Tier History",
+    "recentRewards": "Recent Rewards",
+    "logout": "Logout"
+  }
+}

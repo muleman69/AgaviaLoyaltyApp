@@ -1,0 +1,64 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-gray-100">
+    <ActionBar title="Business Dashboard" class="bg-amber-600 text-white">
+        <ActionItem position="right" tap="{{ onSettings }}" ios.systemIcon="16" android.systemIcon="ic_menu_preferences" />
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4 space-y-6">
+            <!-- Quick Stats Grid -->
+            <GridLayout rows="auto,auto" columns="*,*" class="gap-4">
+                <!-- ... (existing metrics cards remain the same) ... -->
+            </GridLayout>
+
+            <!-- Customer Growth Chart -->
+            <StackLayout class="bg-white p-4 rounded-lg">
+                <GridLayout rows="auto,auto,auto,*" columns="*,auto">
+                    <Label text="{{ customerChart.data.title }}" class="text-lg font-bold" />
+                    
+                    <!-- Timeframe Controls -->
+                    <StackLayout col="1" orientation="horizontal" class="space-x-2">
+                        <Button text="Week" tap="{{ onWeeklyView }}" 
+                                class="{{ timeframe === 'week' ? 'bg-amber-600 text-white' : 'bg-gray-200' }} text-sm p-2 rounded" />
+                        <Button text="Month" tap="{{ onMonthlyView }}" 
+                                class="{{ timeframe === 'month' ? 'bg-amber-600 text-white' : 'bg-gray-200' }} text-sm p-2 rounded" />
+                    </StackLayout>
+                    
+                    <!-- Series Toggle -->
+                    <WrapLayout row="1" colSpan="2" class="mt-2">
+                        <Repeater items="{{ customerChart.series }}">
+                            <Repeater.itemTemplate>
+                                <Button text="{{ label }}" 
+                                        tap="{{ $parent.onToggleSeries }}"
+                                        class="{{ visible ? 'bg-' + color + '-600 text-white' : 'bg-gray-200' }} text-sm p-2 rounded m-1" />
+                            </Repeater.itemTemplate>
+                        </Repeater>
+                    </WrapLayout>
+
+                    <!-- Chart Controls -->
+                    <GridLayout row="2" colSpan="2" columns="auto,auto,auto" class="mt-2">
+                        <Button col="0" text="Reset View" tap="{{ customerChart.resetView }}" 
+                                class="bg-gray-200 text-sm p-2 rounded m-1" />
+                        <Label col="1" text="Pinch to zoom, drag to pan" class="text-sm text-gray-500 text-center m-2" />
+                        <Button col="2" text="Export" tap="{{ onExportData }}" 
+                                class="bg-amber-600 text-white text-sm p-2 rounded m-1" />
+                    </GridLayout>
+                    
+                    <!-- Loading State -->
+                    <ActivityIndicator row="3" busy="{{ customerChart.loading }}" class="m-2" />
+                    
+                    <!-- Error State -->
+                    <StackLayout row="3" class="bg-red-50 p-2 rounded" 
+                               visibility="{{ customerChart.error ? 'visible' : 'collapsed' }}">
+                        <Label text="{{ customerChart.error }}" class="text-red-600 text-sm text-center" />
+                    </StackLayout>
+                    
+                    <!-- Chart -->
+                    <CanvasView row="3" height="300" loaded="{{ customerChart.onChartLoaded }}" 
+                               visibility="{{ !customerChart.loading && !customerChart.error ? 'visible' : 'collapsed' }}" />
+                </GridLayout>
+            </StackLayout>
+
+            <!-- ... (rest of the dashboard remains the same) ... -->
+        </StackLayout>
+    </ScrollView>
+</Page>

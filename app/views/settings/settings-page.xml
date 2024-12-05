@@ -1,0 +1,81 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-gray-100">
+    <ActionBar title="{{ 'Settings' | L }}" class="bg-amber-600 text-white">
+        <NavigationButton text="{{ 'Back' | L }}" tap="{{ goBack }}" />
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4 space-y-4">
+            <!-- Profile Section -->
+            <Label text="{{ 'Profile' | L }}" class="text-lg font-bold text-amber-800" />
+            <StackLayout class="bg-white p-4 rounded-lg">
+                <TextField text="{{ user.name }}" 
+                          hint="{{ 'Name' | L }}"
+                          class="p-3 border-b border-gray-200" />
+                <TextField text="{{ user.email }}" 
+                          hint="{{ 'Email' | L }}"
+                          keyboardType="email"
+                          class="p-3 border-b border-gray-200" />
+                <DatePicker date="{{ user.dateOfBirth }}"
+                           class="p-3" />
+            </StackLayout>
+
+            <!-- Notifications -->
+            <Label text="{{ 'Notifications' | L }}" class="text-lg font-bold text-amber-800" />
+            <StackLayout class="bg-white p-4 rounded-lg">
+                <GridLayout columns="*, auto" class="p-2">
+                    <Label text="{{ 'Promotions' | L }}" />
+                    <Switch col="1" checked="{{ settings.notifications.promotions }}" />
+                </GridLayout>
+                <GridLayout columns="*, auto" class="p-2">
+                    <Label text="{{ 'Rewards' | L }}" />
+                    <Switch col="1" checked="{{ settings.notifications.rewards }}" />
+                </GridLayout>
+                <GridLayout columns="*, auto" class="p-2">
+                    <Label text="{{ 'Events' | L }}" />
+                    <Switch col="1" checked="{{ settings.notifications.events }}" />
+                </GridLayout>
+            </StackLayout>
+
+            <!-- Language -->
+            <Label text="{{ 'Language' | L }}" class="text-lg font-bold text-amber-800" />
+            <StackLayout class="bg-white p-4 rounded-lg">
+                <ListPicker items="{{ languages }}" 
+                           selectedIndex="{{ selectedLanguageIndex }}"
+                           class="p-2" />
+            </StackLayout>
+
+            <!-- Tier History -->
+            <Label text="{{ 'Tier History' | L }}" class="text-lg font-bold text-amber-800" />
+            <ListView items="{{ tierHistory }}" class="bg-white rounded-lg">
+                <ListView.itemTemplate>
+                    <GridLayout columns="auto, *, auto" class="p-4 border-b border-gray-200">
+                        <Label col="0" text="{{ tier }}" class="font-semibold" />
+                        <Label col="2" text="{{ achievedDate, 'MM/dd/yyyy' }}" class="text-gray-500" />
+                    </GridLayout>
+                </ListView.itemTemplate>
+            </ListView>
+
+            <!-- Recent Rewards -->
+            <Label text="{{ 'Recent Rewards' | L }}" class="text-lg font-bold text-amber-800" />
+            <ListView items="{{ rewardHistory }}" class="bg-white rounded-lg">
+                <ListView.itemTemplate>
+                    <GridLayout rows="auto, auto" columns="*, auto" class="p-4 border-b border-gray-200">
+                        <Label row="0" col="0" text="{{ rewardName }}" class="font-semibold" />
+                        <Label row="1" col="0" text="{{ redeemedDate, 'MM/dd/yyyy' }}" class="text-sm text-gray-500" />
+                        <Label row="0" col="1" rowSpan="2" text="{{ points + ' pts' }}" class="text-amber-600" />
+                    </GridLayout>
+                </ListView.itemTemplate>
+            </ListView>
+
+            <!-- Save Button -->
+            <Button text="{{ 'Save Changes' | L }}" 
+                    tap="{{ saveSettings }}"
+                    class="bg-amber-600 text-white p-4 rounded-lg font-bold mt-4" />
+
+            <!-- Logout Button -->
+            <Button text="{{ 'Logout' | L }}" 
+                    tap="{{ logout }}"
+                    class="bg-transparent text-red-600 p-4" />
+        </StackLayout>
+    </ScrollView>
+</Page>

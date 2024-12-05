@@ -1,0 +1,54 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="Agavia Rewards" class="bg-amber-600 text-white">
+        <NavigationButton visibility="collapsed" />
+        <ActionItem position="right" tap="{{ onSettings }}" ios.systemIcon="16" android.systemIcon="ic_menu_preferences" />
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4 space-y-6">
+            <!-- User Status -->
+            <GridLayout rows="auto" columns="*, auto" class="bg-amber-100 p-4 rounded-lg">
+                <StackLayout col="0">
+                    <Label text="{{ userGreeting }}" class="text-lg font-bold text-amber-900" />
+                    <Label text="{{ tierStatus }}" class="text-sm text-amber-700" />
+                </StackLayout>
+                <Label col="1" text="{{ points }}" class="text-2xl font-bold text-amber-600" />
+            </GridLayout>
+
+            <!-- Digital Stamp Card -->
+            <StackLayout class="bg-white p-4 rounded-lg shadow-sm">
+                <Label text="Stamp Card" class="text-lg font-bold mb-2" />
+                <GridLayout rows="auto" columns="*,*,*,*,*" class="mb-2">
+                    <Repeater items="{{ stampArray }}">
+                        <Repeater.itemTemplate>
+                            <ContentView tap="{{ $parent.addStamp }}" class="p-2">
+                                <Label text="{{ $value ? '✓' : '○' }}" 
+                                      class="{{ $value ? 'text-amber-600' : 'text-gray-300' }} text-2xl text-center" />
+                            </ContentView>
+                        </Repeater.itemTemplate>
+                    </Repeater>
+                </GridLayout>
+                <Label text="{{ stampProgress }}" class="text-sm text-gray-600 text-center" />
+            </StackLayout>
+
+            <!-- Available Rewards -->
+            <Label text="Available Rewards" class="text-lg font-bold" />
+            <ListView items="{{ availableRewards }}" height="800" separatorColor="transparent">
+                <ListView.itemTemplate>
+                    <GridLayout columns="auto,*,auto" rows="auto" class="bg-white p-4 rounded-lg shadow-sm m-2">
+                        <Image src="{{ imageUrl }}" width="50" height="50" class="rounded-lg" />
+                        <StackLayout col="1" class="ml-3">
+                            <Label text="{{ name }}" class="font-bold" />
+                            <Label text="{{ description }}" textWrap="true" class="text-sm text-gray-600" />
+                            <Label text="{{ tier }}" class="text-xs text-amber-600" />
+                        </StackLayout>
+                        <Button col="2" text="Redeem" 
+                                class="{{ canRedeem ? 'bg-amber-600' : 'bg-gray-300' }} text-white p-2 rounded"
+                                tap="{{ $parent.onRedeemReward }}"
+                                isEnabled="{{ canRedeem }}" />
+                    </GridLayout>
+                </ListView.itemTemplate>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
+</Page>
